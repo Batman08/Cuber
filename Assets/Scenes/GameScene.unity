@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10.840088, y: 15.9}
+  m_AnchoredPosition: {x: -10.840088, y: 15.900024}
   m_SizeDelta: {x: 76.4, y: 89.28}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &34309774
@@ -356,6 +356,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9006dfcd8b978e843bf35b4e2b409833, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &422676862
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012294140286, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010696350206, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
+      propertyPath: m_Name
+      value: WaterPlane
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 081b45736dde0aa4e83def356cb908b3, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &474077466
 Prefab:
@@ -1039,8 +1085,9 @@ MonoBehaviour:
   Colliders: {fileID: 0}
   Radius: 0
   TimeBetweenSpawns: 2
+  _amountOfHazardsToSpawn: 5
   increaseDifficultyTime: 10
-  increaseDifficultyHazards: 25
+  increaseDifficultyHazards: 5
   spawnWait: 0.5
 --- !u!4 &1661592352
 Transform:
@@ -1049,7 +1096,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1661592350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 17.7, z: 0}
+  m_LocalPosition: {x: 0, y: 30.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

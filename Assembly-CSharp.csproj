@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\SpawnHazards.cs" />
     <Compile Include="Assets\Scripts\UIFunctions.cs" />
+    <Compile Include="Assets\Scripts\Water.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/asgha/Documents/Unity Projects/Cuber/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

@@ -19,7 +19,7 @@ public class SpawnHazards : MonoBehaviour
 
     private int _minHazardsToSpawn = 1;
     private int _maxHazardsToSpawn = 6;
-    private int _amountOfHazardsToSpawn = 0;
+    public int _amountOfHazardsToSpawn = 5;
     private int _HazardToSpawn = 0;
     private int _HazardSpawnCap = 8;
 
@@ -40,20 +40,21 @@ public class SpawnHazards : MonoBehaviour
 
 
         //Debug.Log(_HazardToSpawn);
-    }//1994 khadijah account  (15.21)
+    }//(YPos:15.21)
 
     private IEnumerator GenerateHazard()
     {
         _canSpawn = false;
         TimeBetweenSpawns = Random.Range(0.5f, 2.0f);    //Testing Values
-        _amountOfHazardsToSpawn = 5;     //Testing Values
+                                                         /* _amountOfHazardsToSpawn = 5; */    //Testing Values
 
         for (int i = 0; i < _amountOfHazardsToSpawn; i++)
         {
             Vector3 spawnPos = new Vector3(Random.Range(_minX, _maxX), transform.position.y /*8.5f*/, 0.0f); //Generate A spawn position
             _HazardToSpawn = Random.Range(0, Hazards.Length);
             Instantiate(Hazards[_HazardToSpawn], spawnPos, Quaternion.identity, parent: transform); //Spawn the Hazard
-        }//ADD TO GIT HUB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            yield return new WaitForSeconds(spawnWait);
+        }
 
         yield return new WaitForSeconds(TimeBetweenSpawns);
         TryMakeGameHarder();
