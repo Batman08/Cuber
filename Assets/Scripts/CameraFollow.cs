@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -24,5 +25,10 @@ public class CameraFollow : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = (Time.timeScale == 0) ? 1 : 0;
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

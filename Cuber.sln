@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuber", "Assembly-CSharp.csproj", "{24CD62DE-A3A4-F724-8979-975263D94ED9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{24CD62DE-A3A4-F724-8979-975263D94ED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuber", "Assembly-CSharp-firstpass.csproj", "{191C7ADA-7F3B-37C3-F850-AC9EA7757E0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{191C7ADA-7F3B-37C3-F850-AC9EA7757E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuber", "Assembly-CSharp-Editor-firstpass.csproj", "{AF3AD490-6B6D-3FAE-089D-FDBCF2464E11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{AF3AD490-6B6D-3FAE-089D-FDBCF2464E11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

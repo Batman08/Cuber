@@ -41,7 +41,7 @@ public class HazardCollisionFunctions : MonoBehaviour
         {
             //Destroy(gameObject);
             Vector3 spawnPos = new Vector3(Random.Range(-8, 8), transform.position.y, 0.0f); //Generate A New spawn position
-            transform.position = spawnPos;
+            //transform.position = spawnPos;
             _rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             _rb.detectCollisions = true;
             return;

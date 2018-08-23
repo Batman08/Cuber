@@ -12,29 +12,43 @@ public class PlayerMovement : MonoBehaviour
     private float _maxMovementSpeed = 780;
     private Rigidbody _rb;
     private bool _setYTransformPos;
+    private int control;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _movementSpeed = _maxMovementSpeed;
+
+        string ControlsKey = "Controls";
+        control = PlayerPrefs.GetInt(ControlsKey);
+        Debug.Log(control);
     }
 
     private void Update()
     {
         Vector3 _transform = transform.position;
         transform.position = new Vector3(_transform.x, 1.003519f, _transform.z);
+
+
     }
 
     private void FixedUpdate()
     {
         _rb.position = new Vector3(Mathf.Clamp(_rb.position.x, -8, 8), transform.position.y);
+        if (control == 1)
+        {
+            MobileMoveControlsAccelerometer();
+        }
+        else
+        {
+            MobileControlsTouch();
+        }
 
-        MobileControlsTouch();
-        //#if UNITY_EDITOR
+#if UNITY_EDITOR
         ComputerMove();
-        //#elif UNITY_ANDROID
-        //        MobileMoveControlsAccelerometer
-        //#endif
+#elif UNITY_ANDROID
+ 
+#endif
     }
 
     private void ComputerMove()
@@ -55,11 +69,10 @@ public class PlayerMovement : MonoBehaviour
         if (isFlat)
         {
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
-            //_rb.rotation = Quaternion.RotateTowards(transform.rotation, _rb.rotation, 180);
         }
 
         //_rb.velocity = new Vector3(tilt.x, 1.026f, 0);
-        _rb.AddForce(tilt);
+        _rb.velocity = tilt * 20;
 
         Debug.DrawRay(transform.position + Vector3.up, tilt, Color.red);
     }
