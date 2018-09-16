@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hazard
   - Platform
+  - ControlButtons
   layers:
   - Default
   - TransparentFX
@@ -16,10 +17,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - CrateDestroyedEffect
+  - Player
+  - Crate
+  - Ground
   - 
   - 
   - 

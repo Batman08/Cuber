@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnHazards : MonoBehaviour
 {
     public GameObject PlayerObject;
+    public GameObject PlayerTrailEffect;
     [Space]
     public GameObject[] Hazards;
     [Space]
@@ -28,15 +29,19 @@ public class SpawnHazards : MonoBehaviour
     void Start()
     {
         Instantiate(PlayerObject);
+        Instantiate(PlayerTrailEffect);
         _canSpawn = true;  //Start spawning hazards
     }
 
     void Update()
     {
-        if (_canSpawn)
+        if (TimeBetweenSpawns <= 0f)
         {
-            StartCoroutine(GenerateHazard());
+            StartCoroutine(SpawnWave());
+            TimeBetweenSpawns += 6f;
         }
+
+        TimeBetweenSpawns -= Time.deltaTime;
 
 
         //Debug.Log(_HazardToSpawn);
@@ -45,8 +50,9 @@ public class SpawnHazards : MonoBehaviour
     private IEnumerator GenerateHazard()
     {
         _canSpawn = false;
-        TimeBetweenSpawns = Random.Range(0.5f, 2.0f);    //Testing Values
-                                                         /* _amountOfHazardsToSpawn = 5; */    //Testing Values
+        //TimeBetweenSpawns = Random.Range(0.5f, 2.0f);    //Testing Values
+        TimeBetweenSpawns = 2.0f;
+        /* _amountOfHazardsToSpawn = 5; */    //Testing Values
 
         for (int i = 0; i < _amountOfHazardsToSpawn; i++)
         {
@@ -57,8 +63,23 @@ public class SpawnHazards : MonoBehaviour
         }
 
         yield return new WaitForSeconds(TimeBetweenSpawns);
-        TryMakeGameHarder();
+        _amountOfHazardsToSpawn += increaseDifficultyHazards;
+        //TryMakeGameHarder();
         _canSpawn = true;
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        _amountOfHazardsToSpawn += 1;
+        //spawnWait += 0.5f;
+
+        for (int i = 0; i < _amountOfHazardsToSpawn; i++)
+        {
+            Vector3 spawnPos = new Vector3(Random.Range(_minX, _maxX), transform.position.y /*8.5f*/, 0.0f); //Generate A spawn position
+            _HazardToSpawn = Random.Range(0, Hazards.Length);
+            Instantiate(Hazards[_HazardToSpawn], spawnPos, Quaternion.identity, parent: transform); //Spawn the Hazard
+            yield return new WaitForSeconds(spawnWait);
+        }
     }
 
 

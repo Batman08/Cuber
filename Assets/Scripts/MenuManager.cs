@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         control = PlayerPrefs.GetInt(ControlsKey);
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -31,10 +32,10 @@ public class MenuManager : MonoBehaviour
             ChangeControlText.text = "Tilt";
     }
 
-    public void Play()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
+    //public void Play()
+    //{
+    //    SceneManager.LoadScene("GameScene");
+    //}
 
     public void ChangeControlsOption()
     {

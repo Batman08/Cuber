@@ -9,13 +9,19 @@ public class LivesManager : MonoBehaviour
     public GameObject PlayerObj;
     public Text LivesText;
     public int Lives;
+    public bool HasInfinitLives = false;
+    public Material PlayerMat;
+    public Color Color;
+    public Color Color2;
+    public Color Color3;
 
     private int _startLives = 3;
+
 
     void Start()
     {
         Lives = _startLives;
-
+        PlayerMat.color = Color;
         //Instantiate(PlayerObj);
     }
 
@@ -40,10 +46,27 @@ public class LivesManager : MonoBehaviour
     {
         bool hasNoLivesLeft = (Lives <= 0);
 
-        if (hasNoLivesLeft)
+        if (hasNoLivesLeft && !HasInfinitLives)
         {
-            Destroy(PlayerObj);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //Destroy(PlayerObj);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //Time.timeScale = 1;
+        }
+
+        if (Lives == 3)
+        {
+            PlayerMat.color = Color;
+        }
+
+        if (Lives == 2)
+        {
+
+            PlayerMat.color = Color2;
+        }
+
+        if (Lives == 1)
+        {
+            PlayerMat.color = Color3;
         }
     }
 }

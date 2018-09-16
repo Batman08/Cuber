@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,20 +9,35 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalAxis;
     public bool isFlat = true;
     public float _movementSpeed;
+    public GameObject ControlButtons;
+    public Text LivesTextCube;
+    public ParticleSystem ParticleSystem;
 
     private float _maxMovementSpeed = 780;
+    private float _minBound = -8.184f;
+    private float _MaxBound = 8.184f;
     private Rigidbody _rb;
     private bool _setYTransformPos;
     private int control;
+    private LivesManager _livesManager;
+    private GameManager _gameManager;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _movementSpeed = _maxMovementSpeed;
+        _livesManager = FindObjectOfType<LivesManager>();
+        _gameManager = FindObjectOfType<GameManager>();
 
         string ControlsKey = "Controls";
         control = PlayerPrefs.GetInt(ControlsKey);
-        Debug.Log(control);
+
+        if (ControlButtons == null)
+        {
+            ControlButtons = GameObject.Find("ControlButtons");
+        }
+        ParticleSystem = FindObjectOfType<ParticleSystem>();
+        //colour of cube -----(A80000)
     }
 
     private void Update()
@@ -29,19 +45,43 @@ public class PlayerMovement : MonoBehaviour
         Vector3 _transform = transform.position;
         transform.position = new Vector3(_transform.x, 1.003519f, _transform.z);
 
+        if (ControlButtons == null)
+        {
+            ControlButtons = GameObject.Find("ControlButtons");
+        }
+        ChangeParticleSystemPosition();
+        Controls();
 
+        LivesTextCube.text = "" + _livesManager.Lives;
+    }
+
+    private void ChangeParticleSystemPosition()
+    {
+        ParticleSystem.transform.position = _rb.position;
     }
 
     private void FixedUpdate()
     {
-        _rb.position = new Vector3(Mathf.Clamp(_rb.position.x, -8, 8), transform.position.y);
-        if (control == 1)
+        _rb.position = new Vector3(Mathf.Clamp(_rb.position.x, _minBound, _MaxBound), transform.position.y);
+    }
+
+    private void Controls()
+    {
+        if (!_gameManager.IsParticleSystemActive)
+        {
+            ParticleSystem.gameObject.SetActive(value: false);
+        }
+
+        bool UsingAccelerometer = (control == 1);
+        if (UsingAccelerometer)
         {
             MobileMoveControlsAccelerometer();
+            ControlButtons.SetActive(value: false);
         }
         else
         {
             MobileControlsTouch();
+            ControlButtons.SetActive(value: true);
         }
 
 #if UNITY_EDITOR
@@ -85,6 +125,23 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDir = new Vector3(horizontalAxis, 0, 0);
             _rb.velocity = moveDir * _movementSpeed * Time.deltaTime;
             _rb.rotation = Quaternion.RotateTowards(transform.rotation, _rb.rotation, 180);
+        }
+
+        if (_rb.velocity.x < 0)
+        {
+            _gameManager.IsParticleSystemActive = true;
+            ParticleSystem.transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+
+        else if (_rb.velocity.x > 0)
+        {
+            _gameManager.IsParticleSystemActive = true;
+            ParticleSystem.transform.rotation = Quaternion.Euler(0, -90, 0);
+        }
+
+        else
+        {
+            _gameManager.IsParticleSystemActive = false;
         }
     }
 
