@@ -7,20 +7,25 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public Text ChangeControlText;
+    public Text HighScoreText;
 
     public int control;
 
     private string ControlsKey = "Controls";
+    private JsonData _jsonData;
 
     void Start()
     {
-        control = PlayerPrefs.GetInt(ControlsKey);
         Time.timeScale = 1;
+        control = PlayerPrefs.GetInt(ControlsKey);
+        _jsonData = FindObjectOfType<JsonData>();
     }
 
     void Update()
     {
         ChangeControlButtonText();
+        _jsonData.ReadData();
+        LoadHighScore();
     }
 
     private void ChangeControlButtonText()
@@ -30,6 +35,12 @@ public class MenuManager : MonoBehaviour
             ChangeControlText.text = "Touch";
         else
             ChangeControlText.text = "Tilt";
+    }
+
+    private void LoadHighScore()
+    {
+        string highScoreKey = "HighScore";
+        HighScoreText.text = "HighScore: " + PlayerPrefs.GetInt(highScoreKey).ToString();
     }
 
     //public void Play()

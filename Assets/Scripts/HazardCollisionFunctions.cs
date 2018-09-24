@@ -25,12 +25,12 @@ public class HazardCollisionFunctions : MonoBehaviour
         _livesManager = FindObjectOfType<LivesManager>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //transform.Rotate(Vector3.back, Speed * Time.deltaTime);
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1 * SpeedForce, transform.position.z);
         if (!_pauseMenu.HasPausedGame || !_gameManager.IsGameOver)
         {
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1 * SpeedForce, transform.position.z);
             transform.position = pos;
         }
     }

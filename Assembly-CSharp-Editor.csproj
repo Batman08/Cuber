@@ -61,21 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\AppLovin\source\plugin\Assets\GoogleMobileAds\Editor\AppLovinPostProcessBuild.cs" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\AppLovin\source\plugin\Assets\GoogleMobileAds\Editor\AppLovinMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\Tapjoy\source\plugin\Assets\GoogleMobileAds\Editor\TapjoyMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\Maio\source\plugin\Assets\GoogleMobileAds\Editor\MaioMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\InMobi\source\plugin\Assets\GoogleMobileAds\Editor\InMobiMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\UnityAds\source\plugin\Assets\GoogleMobileAds\Editor\UnityMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\Chartboost\source\plugin\Assets\GoogleMobileAds\Editor\ChartboostMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\MoPub\source\plugin\Assets\GoogleMobileAds\Editor\MoPubMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\Vungle\source\plugin\Assets\GoogleMobileAds\Editor\VungleMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\Nend\source\plugin\Assets\GoogleMobileAds\Editor\NendMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\MyTarget\source\plugin\Assets\GoogleMobileAds\Editor\MyTargetMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\IronSource\source\plugin\Assets\GoogleMobileAds\Editor\IronSourceMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\source\plugin\Assets\GoogleMobileAds\Editor\GoogleMobileAdsDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\AdColony\source\plugin\Assets\GoogleMobileAds\Editor\AdColonyMediationDependencies.xml" />
-    <None Include="Assets\_GoogleAds\googleads-mobile-unity-master\mediation\Facebook\source\plugin\Assets\GoogleMobileAds\Editor\FacebookMediationDependencies.xml" />
+    <Compile Include="Assets\DayNight\Editor\DayNightCycleGradientEditor.cs" />
+    <Compile Include="Assets\DayNight\Editor\DayNightCycleSkyboxEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/asgha/Documents/Unity Projects/Cuber/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

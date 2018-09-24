@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             ControlButtons = GameObject.Find("ControlButtons");
         }
-        ChangeParticleSystemPosition();
+        //ChangeParticleSystemPosition();
         Controls();
 
         LivesTextCube.text = "" + _livesManager.Lives;
@@ -67,11 +67,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Controls()
     {
-        if (!_gameManager.IsParticleSystemActive)
-        {
-            ParticleSystem.gameObject.SetActive(value: false);
-        }
-
         bool UsingAccelerometer = (control == 1);
         if (UsingAccelerometer)
         {
@@ -115,6 +110,9 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = tilt * 20;
 
         Debug.DrawRay(transform.position + Vector3.up, tilt, Color.red);
+        if (tilt.magnitude <= 0)
+        {
+        }
     }
 
     public void MobileControlsTouch()
@@ -125,23 +123,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDir = new Vector3(horizontalAxis, 0, 0);
             _rb.velocity = moveDir * _movementSpeed * Time.deltaTime;
             _rb.rotation = Quaternion.RotateTowards(transform.rotation, _rb.rotation, 180);
-        }
-
-        if (_rb.velocity.x < 0)
-        {
-            _gameManager.IsParticleSystemActive = true;
-            ParticleSystem.transform.rotation = Quaternion.Euler(0, 90, 0);
-        }
-
-        else if (_rb.velocity.x > 0)
-        {
-            _gameManager.IsParticleSystemActive = true;
-            ParticleSystem.transform.rotation = Quaternion.Euler(0, -90, 0);
-        }
-
-        else
-        {
-            _gameManager.IsParticleSystemActive = false;
         }
     }
 

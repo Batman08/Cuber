@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalAxis: 0
   isFlat: 1
-  _movementSpeed: 780
+  _movementSpeed: 835
   ControlButtons: {fileID: 0}
   LivesTextCube: {fileID: 114025207345282550}
   ParticleSystem: {fileID: 0}

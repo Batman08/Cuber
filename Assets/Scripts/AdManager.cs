@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using admob;
 using UnityEngine;
@@ -22,22 +23,41 @@ public class AdManager : MonoBehaviour
         Admob.Instance().setTesting(true);
         Admob.Instance().loadInterstitial();
         Admob.Instance().loadRewardedVideo(_testVideoId);
+
+        //Admob.Instance().rewardedVideoEventHandler += OnRewardedVideoEvent;
+    }
+
+    private void Update()
+    {
+        bool hasRewardVideoBeenLoaded = (Admob.Instance().isRewardedVideoReady() == false);
+        bool hasInterstitialAdBeenLoaded = (Admob.Instance().isInterstitialReady() == false);
+
+        if (hasRewardVideoBeenLoaded)
+        {
+            Admob.Instance().loadRewardedVideo(_testVideoId);
+        }
+
+        if (hasInterstitialAdBeenLoaded)
+        {
+            Admob.Instance().loadInterstitial();
+        }
     }
 
     public void ShowVideoAd()
     {
-        Admob.Instance().loadRewardedVideo(_testVideoId);
-
         if (Admob.Instance().isRewardedVideoReady())
         {
             Admob.Instance().showRewardedVideo();
         }
     }
 
+    void OnRewardedVideoEvent(string eventName, string msg)
+    {
+        Debug.Log("handler onRewardedVideoEvent---" + eventName + "  rewarded: " + msg);
+    }
+
     public void ShowInterstitialAd()
     {
-        Admob.Instance().loadInterstitial();
-
         if (Admob.Instance().isInterstitialReady())
         {
             Admob.Instance().showInterstitial();

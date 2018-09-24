@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public GameObject ShowAdButton;
     public ParticleSystem ParticleSystem;
     public bool IsGameOver = false;
-    public bool IsParticleSystemActive = false;
 
     private LivesManager _livesManager;
     private AdManager _adManager;
@@ -16,8 +15,9 @@ public class GameManager : MonoBehaviour
     {
         _livesManager = GetComponent<LivesManager>();
         _adManager = FindObjectOfType<AdManager>();
-
-        ParticleSystem = FindObjectOfType<ParticleSystem>();
+        Physics.IgnoreLayerCollision(10, 11, false);
+        //ParticleSystem = FindObjectOfType<ParticleSystem>();
+        //ParticleSystem.Stop();
         ShowAdButton.SetActive(value: false);
     }
 
@@ -55,20 +55,20 @@ public class GameManager : MonoBehaviour
 
     public void RightButton()
     {
-        IsParticleSystemActive = true;
-        ParticleSystem.gameObject.SetActive(value: true);
-        ParticleSystem.transform.rotation = Quaternion.Euler(0, -90, 0);
+        //ParticleSystem.gameObject.SetActive(value: true);
+        //ParticleSystem.Play();
+        //ParticleSystem.transform.rotation = Quaternion.Euler(0, -90, 0);
     }
 
     public void LeftButton()
     {
-        IsParticleSystemActive = true;
-        ParticleSystem.gameObject.SetActive(value: true);
-        ParticleSystem.transform.rotation = Quaternion.Euler(0, 90, 0);
+        //ParticleSystem.gameObject.SetActive(value: true);
+        //ParticleSystem.Play();
+        //ParticleSystem.transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
-    public void DisableSystem()
+    public void StopParticleSystem()
     {
-        IsParticleSystemActive = false;
+        //ParticleSystem.Stop();
     }
 }

@@ -10,9 +10,15 @@ public class LevelChanger : MonoBehaviour
 
     private string LevelToLoadString = "";
 
+    public int Dice1, Dice2;
+    private AdManager _adManager;
+
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+        _adManager = FindObjectOfType<AdManager>();
+        Dice1 = UnityEngine.Random.Range(0, 4);
+        Dice2 = UnityEngine.Random.Range(0, 4);
     }
 
     public void GoToLevel()
@@ -28,6 +34,11 @@ public class LevelChanger : MonoBehaviour
 
     public void OnFadeComplete()
     {
+        bool BothDicesEqualEachOther = (Dice1 == Dice2);
+        if (BothDicesEqualEachOther)
+        {
+            _adManager.ShowInterstitialAd();
+        }
         SceneManager.LoadScene(LevelToLoadString);
         Animator.SetTrigger("FadeIn");
     }
