@@ -38,16 +38,7 @@ public class JsonData : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveData();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReadData();
-        }
-
+        SaveData();
         UpdatePLayerPrefs();
     }
 
