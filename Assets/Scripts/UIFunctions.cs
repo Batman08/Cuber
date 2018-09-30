@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class UIFunctions : MonoBehaviour
 {
-    public Text _scoreText;
+    public TextMeshProUGUI _scoreText;
+    public TextMeshProUGUI _scoreText2;
     public int _score;
     public bool _gameStarted;
+
+    private PauseMenu _pauseMenu;
 
     void Start()
     {
         _gameStarted = true;
+
+        _pauseMenu = FindObjectOfType<PauseMenu>();
 
         InvokeRepeating("UpdateScore", 1.0f, 1.0f);
     }
@@ -34,10 +41,11 @@ public class UIFunctions : MonoBehaviour
 
     private void UpdateScore()
     {
-        if (_gameStarted == true)
+        if (_gameStarted == true && !_pauseMenu.HasPausedGame)
         {
             _score++;
             _scoreText.text = "" + _score;
+            _scoreText2.text = "" + _score;
         }
     }
 }

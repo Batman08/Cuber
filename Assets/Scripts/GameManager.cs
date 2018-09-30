@@ -1,29 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Timer Variables")]
+    public GameObject TimerTextGameObject;
+    public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI TimerText2;
+    [Space]
     public GameObject ShowAdButton;
     public ParticleSystem ParticleSystem;
+
     public bool IsGameOver = false;
+    public bool CanShowTimer = false;
+    public float TimerTime = 3f;
+
 
     private LivesManager _livesManager;
     private AdManager _adManager;
+    private PauseMenu _pauseMenu;
+    private LoadingBar _loadingBar;
 
     void Start()
     {
-        _livesManager = GetComponent<LivesManager>();
+        _livesManager = FindObjectOfType<LivesManager>();
         _adManager = FindObjectOfType<AdManager>();
+        _pauseMenu = FindObjectOfType<PauseMenu>();
+        _loadingBar = FindObjectOfType<LoadingBar>();
         Physics.IgnoreLayerCollision(10, 11, false);
+
         //ParticleSystem = FindObjectOfType<ParticleSystem>();
         //ParticleSystem.Stop();
+
         ShowAdButton.SetActive(value: false);
+        TimerTextGameObject.SetActive(value: false);
     }
 
     void Update()
     {
         CheckIfGameIsOver();
+        ShowTimer();
     }
 
     private void CheckIfGameIsOver()
@@ -32,8 +50,32 @@ public class GameManager : MonoBehaviour
         if (gameIsOver)
         {
             IsGameOver = true;
-            ShowAdButton.SetActive(value: true);
-            Time.timeScale = 0;
+            bool buttonIsStillLoading = _loadingBar._currentAmount > 0;
+            if (buttonIsStillLoading)
+            {
+                ShowAdButton.SetActive(value: true);
+            }
+            //Time.timeScale = 0;
+            _pauseMenu.HasPausedGame = true;
+
+        }
+    }
+
+    void ShowTimer()
+    {
+        if (CanShowTimer)
+        {
+            TimerTime -= Time.deltaTime;
+            TimerText.text = "" + TimerTime.ToString("F0");
+            TimerText2.text = "" + TimerTime.ToString("F0");
+            if (TimerTime <= 0)
+            {
+                TimerTextGameObject.SetActive(value: false);
+                _pauseMenu.HasPausedGame = false;
+                StartCoroutine(PlayerInvincibility());
+                CanShowTimer = false;
+                TimerTime = 3f;
+            }
         }
     }
 
@@ -42,8 +84,10 @@ public class GameManager : MonoBehaviour
         _adManager.ShowVideoAd();
         _livesManager.Lives = 1;
         ShowAdButton.SetActive(value: false);
+        CanShowTimer = true;
+        _pauseMenu.HasPausedGame = true;
         Time.timeScale = 1;
-        StartCoroutine(PlayerInvincibility());
+        TimerTextGameObject.SetActive(value: true);
     }
 
     private IEnumerator PlayerInvincibility()
@@ -53,6 +97,7 @@ public class GameManager : MonoBehaviour
         Physics.IgnoreLayerCollision(10, 11, false);
     }
 
+    #region Don't know if needed
     public void RightButton()
     {
         //ParticleSystem.gameObject.SetActive(value: true);
@@ -71,4 +116,5 @@ public class GameManager : MonoBehaviour
     {
         //ParticleSystem.Stop();
     }
+    #endregion
 }

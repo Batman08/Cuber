@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
-    public Text ChangeControlText;
-    public Text HighScoreText;
+    [Header("Text Mesh Pro Text")]
+    public TextMeshProUGUI ChangeControlText;
+    public TextMeshProUGUI ChangeControlText2;
+    [Space]
+    public TextMeshProUGUI HighScoreText;
+    public TextMeshProUGUI HighScoreText2;
 
     public int control;
 
@@ -32,15 +37,23 @@ public class MenuManager : MonoBehaviour
     {
         bool TouchControl = control == 0;
         if (TouchControl)
+        {
             ChangeControlText.text = "Touch";
+            ChangeControlText2.text = "Touch";
+        }
+
         else
+        {
             ChangeControlText.text = "Tilt";
+            ChangeControlText2.text = "Tilt";
+        }
     }
 
     private void LoadHighScore()
     {
         string highScoreKey = "HighScore";
         HighScoreText.text = "HighScore: " + PlayerPrefs.GetInt(highScoreKey).ToString();
+        HighScoreText2.text = "HighScore: " + PlayerPrefs.GetInt(highScoreKey).ToString();
     }
 
     //public void Play()

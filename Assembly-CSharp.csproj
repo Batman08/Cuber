@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\HazardCollisionFunctions.cs" />
     <Compile Include="Assets\Scripts\LevelChanger.cs" />
     <Compile Include="Assets\Scripts\LivesManager.cs" />
+    <Compile Include="Assets\Scripts\LoadingBar.cs" />
     <Compile Include="Assets\Scripts\MakeSomeNoise.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />

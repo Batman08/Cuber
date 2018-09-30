@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class LivesManager : MonoBehaviour
 {
     public GameObject PlayerObj;
-    public Text LivesText;
+    [Space]
+    [Header("Lives Text")]
+    public TextMeshProUGUI LivesText;
+    public TextMeshProUGUI LivesText2;
+    [Space]
     public int Lives;
     public bool HasInfinitLives = false;
     public Material PlayerMat;
+    [Space]
+    [Header("Player Colours")]
     public Color Color;
     public Color Color2;
     public Color Color3;
@@ -33,7 +40,8 @@ public class LivesManager : MonoBehaviour
 
     private void UpdateText()
     {
-        LivesText.text = "Lives: " + Lives;
+        LivesText.text = "" + Lives;
+        LivesText2.text = "" + Lives;
 
         bool livesAreLessThanZero = (Lives <= 0);
         if (livesAreLessThanZero)
