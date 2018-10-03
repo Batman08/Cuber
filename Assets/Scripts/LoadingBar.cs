@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class LoadingBar : MonoBehaviour
 {
     public Transform LoadingBarTransform;
+    public GameObject EndGamePanel;
+    public GameObject DuringGameText;
+    public TextMeshProUGUI FinalScoreText;
 
     [HideInInspector] [SerializeField] public float _currentAmount = 100;
     [SerializeField] private float _speed;
+    private UIFunctions _uiFunctions;
 
     private void Awake()
     {
         _currentAmount = 100f;
+        _uiFunctions = FindObjectOfType<UIFunctions>();
+        EndGamePanel.SetActive(value: false);
     }
 
     void Update()
@@ -30,9 +37,17 @@ public class LoadingBar : MonoBehaviour
         else
         {
             Debug.Log("Game Over");
+            DuringGameText.SetActive(value: false);
+            EndGamePanel.SetActive(value: true);
+            LoadScore();
             gameObject.SetActive(value: false);
         }
 
         LoadingBarTransform.GetComponent<Image>().fillAmount = _currentAmount / 100;
     }
-}
+
+    private void LoadScore()
+    {
+        FinalScoreText.text = "" + _uiFunctions._score;
+    }
+}//sofetness ----- 0.572
