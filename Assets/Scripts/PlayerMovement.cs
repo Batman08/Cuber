@@ -8,26 +8,34 @@ public class PlayerMovement : MonoBehaviour
 {
     public float horizontalAxis;
     public bool isFlat = true;
-    public float _movementSpeed;
+    public float ComputerMovementSpeed;
+    public float PhoneMovementSpeed;
     public GameObject ControlButtons;
     public Text LivesTextCube;
     public ParticleSystem ParticleSystem;
+    public Animator Animator;
 
-    private float _maxMovementSpeed = 780;
-    private float _minBound = -8.184f;
-    private float _MaxBound = 8.184f;
+    private float _maxComputerMovementSpeed = 780;
+    private float _maxPhoneMovementSpeed = 790;
+    private float _minBound = -7.547f;
+    private float _MaxBound = 7.547f;
     private Rigidbody _rb;
     private bool _setYTransformPos;
     private int control;
     private LivesManager _livesManager;
     private GameManager _gameManager;
+    private PauseMenu _pauseMenu;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _movementSpeed = _maxMovementSpeed;
+
+        ComputerMovementSpeed = _maxComputerMovementSpeed;
+        PhoneMovementSpeed = _maxPhoneMovementSpeed;
+
         _livesManager = FindObjectOfType<LivesManager>();
         _gameManager = FindObjectOfType<GameManager>();
+        _pauseMenu = FindObjectOfType<PauseMenu>();
 
         string ControlsKey = "Controls";
         control = PlayerPrefs.GetInt(ControlsKey);
@@ -42,15 +50,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 _transform = transform.position;
-        transform.position = new Vector3(_transform.x, 1.003519f, _transform.z);
+
 
         if (ControlButtons == null)
         {
             ControlButtons = GameObject.Find("ControlButtons");
         }
         //ChangeParticleSystemPosition();
-        Controls();
+
 
         LivesTextCube.text = "" + _livesManager.Lives;
     }
@@ -62,7 +69,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector3 _transform = transform.position;
+        transform.position = new Vector3(_transform.x, 1.003519f, _transform.z);
+
         _rb.position = new Vector3(Mathf.Clamp(_rb.position.x, _minBound, _MaxBound), transform.position.y);
+        if (_pauseMenu.HasPausedGame == false)
+        {
+            Controls();
+        }
     }
 
     private void Controls()
@@ -92,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float horizontalAxis = Input.GetAxis("Horizontal");
             Vector3 moveDir = new Vector3(horizontalAxis, 0, 0);
-            _rb.velocity = moveDir * _movementSpeed * Time.deltaTime;
+            _rb.velocity = moveDir * ComputerMovementSpeed * Time.deltaTime;
             _rb.rotation = Quaternion.RotateTowards(transform.rotation, _rb.rotation, 180);
         }
     }
@@ -121,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontalAxis = CrossPlatformInputManager.GetAxis("Horizontal");
             Vector3 moveDir = new Vector3(horizontalAxis, 0, 0);
-            _rb.velocity = moveDir * _movementSpeed * Time.deltaTime;
+            _rb.velocity = moveDir * PhoneMovementSpeed * Time.deltaTime;
             _rb.rotation = Quaternion.RotateTowards(transform.rotation, _rb.rotation, 180);
         }
     }
@@ -133,5 +147,12 @@ public class PlayerMovement : MonoBehaviour
             _setYTransformPos = true;
             _rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         }
+    }
+
+    public IEnumerator StartFadeAnimation()
+    {
+        Animator.Play("PlayerFade");
+        yield return new WaitForSeconds(8);
+        Animator.("PlayerFade");
     }
 }

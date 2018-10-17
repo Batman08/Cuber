@@ -343,7 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalAxis: 0
   isFlat: 1
-  _movementSpeed: 835
+  ComputerMovementSpeed: 835
+  PhoneMovementSpeed: 0
   ControlButtons: {fileID: 0}
   LivesTextCube: {fileID: 114025207345282550}
   ParticleSystem: {fileID: 0}

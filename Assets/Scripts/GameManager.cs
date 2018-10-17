@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject ShowAdButton;
     public ParticleSystem ParticleSystem;
 
+    public GameObject DuringGameText;
+    public GameObject EndGamePanel;
+
+    public bool ShouldGiveAnotherChance;
     public bool IsGameOver = false;
     public bool CanShowTimer = false;
     public float TimerTime = 3f;
@@ -30,6 +34,7 @@ public class GameManager : MonoBehaviour
         _pauseMenu = FindObjectOfType<PauseMenu>();
         _loadingBar = FindObjectOfType<LoadingBar>();
         Physics.IgnoreLayerCollision(10, 11, false);
+        ShouldGiveAnotherChance = true;
 
         //ParticleSystem = FindObjectOfType<ParticleSystem>();
         //ParticleSystem.Stop();
@@ -50,10 +55,16 @@ public class GameManager : MonoBehaviour
         if (gameIsOver)
         {
             IsGameOver = true;
-            bool buttonIsStillLoading = _loadingBar._currentAmount > 0;
+            bool buttonIsStillLoading = _loadingBar._currentAmount > 0 && ShouldGiveAnotherChance;
             if (buttonIsStillLoading)
             {
                 ShowAdButton.SetActive(value: true);
+            }
+
+            else
+            {
+                DuringGameText.SetActive(value: false);
+                EndGamePanel.SetActive(value: true);
             }
             //Time.timeScale = 0;
             _pauseMenu.HasPausedGame = true;
@@ -87,6 +98,7 @@ public class GameManager : MonoBehaviour
         CanShowTimer = true;
         _pauseMenu.HasPausedGame = true;
         Time.timeScale = 1;
+        ShouldGiveAnotherChance = false;
         TimerTextGameObject.SetActive(value: true);
     }
 

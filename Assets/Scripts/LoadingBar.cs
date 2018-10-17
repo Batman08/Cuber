@@ -10,6 +10,7 @@ public class LoadingBar : MonoBehaviour
     public GameObject EndGamePanel;
     public GameObject DuringGameText;
     public TextMeshProUGUI FinalScoreText;
+    public TextMeshProUGUI FinalScoreText2;
 
     [HideInInspector] [SerializeField] public float _currentAmount = 100;
     [SerializeField] private float _speed;
@@ -49,5 +50,6 @@ public class LoadingBar : MonoBehaviour
     private void LoadScore()
     {
         FinalScoreText.text = "" + _uiFunctions._score;
+        FinalScoreText2.text = "" + _uiFunctions._score;
     }
 }//sofetness ----- 0.572
