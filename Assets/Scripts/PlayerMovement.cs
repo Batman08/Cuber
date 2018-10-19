@@ -153,6 +153,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Animator.Play("PlayerFade");
         yield return new WaitForSeconds(8);
-        Animator.("PlayerFade");
+        //Animator.("PlayerFade");
     }
 }
