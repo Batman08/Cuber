@@ -56,6 +56,9 @@ MonoBehaviour:
   TimerText2: {fileID: 0}
   ShowAdButton: {fileID: 0}
   ParticleSystem: {fileID: 0}
+  DuringGameText: {fileID: 0}
+  EndGamePanel: {fileID: 0}
+  ShouldGiveAnotherChance: 0
   IsGameOver: 0
   CanShowTimer: 0
   TimerTime: 3

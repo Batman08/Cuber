@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 54170987596614258}
   - component: {fileID: 114064174794797788}
   - component: {fileID: 114218080805580708}
+  - component: {fileID: 95676944787074184}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -184,6 +185,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95676944787074184
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1579417458264362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72610c0da60355549bbe532aeeedbf9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114025207345282550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -348,6 +367,7 @@ MonoBehaviour:
   ControlButtons: {fileID: 0}
   LivesTextCube: {fileID: 114025207345282550}
   ParticleSystem: {fileID: 0}
+  Animator: {fileID: 95676944787074184}
 --- !u!114 &114218080805580708
 MonoBehaviour:
   m_ObjectHideFlags: 1

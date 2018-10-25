@@ -13,22 +13,25 @@ public class PlayerMovement : MonoBehaviour
     public GameObject ControlButtons;
     public Text LivesTextCube;
     public ParticleSystem ParticleSystem;
-    public Animator Animator;
 
     private float _maxComputerMovementSpeed = 780;
     private float _maxPhoneMovementSpeed = 790;
-    private float _minBound = -7.547f;
-    private float _MaxBound = 7.547f;
+    private float _minBound = -7.9f;
+    private float _MaxBound = 7.9f;
     private Rigidbody _rb;
     private bool _setYTransformPos;
     private int control;
     private LivesManager _livesManager;
     private GameManager _gameManager;
     private PauseMenu _pauseMenu;
+    private Animator _animator;
 
     void Start()
     {
+
         _rb = GetComponent<Rigidbody>();
+
+        _animator = GetComponent<Animator>();
 
         ComputerMovementSpeed = _maxComputerMovementSpeed;
         PhoneMovementSpeed = _maxPhoneMovementSpeed;
@@ -50,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
 
         if (ControlButtons == null)
         {
@@ -151,8 +153,9 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator StartFadeAnimation()
     {
-        Animator.Play("PlayerFade");
+        _animator.SetBool("StartAnim", false);
         yield return new WaitForSeconds(8);
-        //Animator.("PlayerFade");
+        _animator.SetBool("StartAnim", true);
+        Debug.Log("Stopped animation");
     }
 }

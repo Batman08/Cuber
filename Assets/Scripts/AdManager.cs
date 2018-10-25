@@ -24,7 +24,7 @@ public class AdManager : MonoBehaviour
         Admob.Instance().loadInterstitial();
         Admob.Instance().loadRewardedVideo(_testVideoId);
 
-        //Admob.Instance().rewardedVideoEventHandler += OnRewardedVideoEvent;
+        Admob.Instance().rewardedVideoEventHandler += OnRewardedVideoEvent;
     }
 
     private void Update()

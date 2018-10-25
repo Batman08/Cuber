@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private AdManager _adManager;
     private PauseMenu _pauseMenu;
     private LoadingBar _loadingBar;
+    private PlayerMovement _player;
 
     void Start()
     {
@@ -33,6 +34,10 @@ public class GameManager : MonoBehaviour
         _adManager = FindObjectOfType<AdManager>();
         _pauseMenu = FindObjectOfType<PauseMenu>();
         _loadingBar = FindObjectOfType<LoadingBar>();
+        _player = FindObjectOfType<PlayerMovement>();
+
+        _loadingBar.gameObject.gameObject.SetActive(value: false);
+
         Physics.IgnoreLayerCollision(10, 11, false);
         ShouldGiveAnotherChance = true;
 
@@ -84,6 +89,7 @@ public class GameManager : MonoBehaviour
                 TimerTextGameObject.SetActive(value: false);
                 _pauseMenu.HasPausedGame = false;
                 StartCoroutine(PlayerInvincibility());
+                StartCoroutine(_player.StartFadeAnimation());
                 CanShowTimer = false;
                 TimerTime = 3f;
             }
