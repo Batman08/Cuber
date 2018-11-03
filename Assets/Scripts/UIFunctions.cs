@@ -9,6 +9,10 @@ public class UIFunctions : MonoBehaviour
 {
     public TextMeshProUGUI _scoreText;
     public TextMeshProUGUI _scoreText2;
+
+    public TextMeshProUGUI FinalScoreText;
+    public TextMeshProUGUI FinalScoreText2;
+
     public int _score;
     public bool _gameStarted;
 
@@ -46,6 +50,30 @@ public class UIFunctions : MonoBehaviour
             _score++;
             _scoreText.text = "" + _score;
             _scoreText2.text = "" + _score;
+        }
+    }
+
+    public void LoadScore()
+    {
+        StartCoroutine(ScoreAnimationText());
+    }
+
+    private IEnumerator ScoreAnimationText()
+    {
+        FinalScoreText.text = "0";
+        FinalScoreText2.text = "0";
+
+        int Score = 0;
+
+        yield return new WaitForSeconds(0.2f);
+
+        while (Score < _score)
+        {
+            Score++;
+            FinalScoreText.text = Score.ToString();
+            FinalScoreText2.text = Score.ToString();
+
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

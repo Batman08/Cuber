@@ -9,8 +9,7 @@ public class LoadingBar : MonoBehaviour
     public Transform LoadingBarTransform;
     public GameObject EndGamePanel;
     public GameObject DuringGameText;
-    public TextMeshProUGUI FinalScoreText;
-    public TextMeshProUGUI FinalScoreText2;
+
 
     [HideInInspector] [SerializeField] public float _currentAmount = 100;
     [SerializeField] private float _speed;
@@ -40,16 +39,10 @@ public class LoadingBar : MonoBehaviour
             Debug.Log("Game Over");
             DuringGameText.SetActive(value: false);
             EndGamePanel.SetActive(value: true);
-            LoadScore();
+            _uiFunctions.LoadScore();
             gameObject.SetActive(value: false);
         }
 
         LoadingBarTransform.GetComponent<Image>().fillAmount = _currentAmount / 100;
     }
-
-    private void LoadScore()
-    {
-        FinalScoreText.text = "" + _uiFunctions._score;
-        FinalScoreText2.text = "" + _uiFunctions._score;
-    }
-}//sofetness ----- 0.572
+}//softness ----- 0.572

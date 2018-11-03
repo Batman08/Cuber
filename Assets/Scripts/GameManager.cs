@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
         ShowTimer();
     }
 
+    public GameObject PauseButton;
+
     private void CheckIfGameIsOver()
     {
         bool gameIsOver = (_livesManager.Lives <= 0);
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
             if (buttonIsStillLoading)
             {
                 ShowAdButton.SetActive(value: true);
+                PauseButton.SetActive(value: false);
             }
 
             else
@@ -106,6 +109,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         ShouldGiveAnotherChance = false;
         TimerTextGameObject.SetActive(value: true);
+        PauseButton.SetActive(value: true);
     }
 
     private IEnumerator PlayerInvincibility()
